@@ -78,16 +78,13 @@ const getPagination = pagination => pagination && <div class='swiper-pagination'
 
 const render = ({props}) => {
 	const {arrows, children, pagination} = props;
-
-	children.forEach(x => {
-		x.attributes.class = `${x.attributes.class || ''} swiper-slide`;
-	});
+	const items = children.map(x => <div class='swiper-slide'>{x}</div>);
 
 	return (
 		<div class={['Swiper', props.class]}>
 			<div class='swiper-container'>
 				<div class='swiper-wrapper'>
-					{children}
+					{items}
 				</div>
 				{getArrows(arrows)}
 				{getPagination(pagination)}
