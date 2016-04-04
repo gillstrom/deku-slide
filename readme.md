@@ -57,14 +57,14 @@ Show arrows.
 
 ### class
 
-Type: `string`
+Type: `string`  
 Default: `'Swiper'`
 
 Class to be added to the element.
 
 ### duration
 
-Type: `number`
+Type: `number`  
 Default: `3000`
 
 Delay between transitions in ms.
