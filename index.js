@@ -47,7 +47,7 @@ const defaultProps = {
 
 const initialState = () => ({active: 0});
 
-const afterMount = ({props}, el) => {
+const init = ({props}, el) => {
 	const {arrows, duration, loop, onInit, options, pagination, play, speed, vertical} = props;
 	const swiper = new Swiper(el.querySelector('.swiper-container'), condenseKeys(objectAssign({
 		autoplay: play && duration,
@@ -66,6 +66,8 @@ const afterMount = ({props}, el) => {
 
 	onInit(swiper);
 };
+
+const afterMount = ({props}, el) => requestAnimationFrame(() => init({props}, el));
 
 const getArrows = arrows => arrows && (
 	<div class='Swiper-controls'>
