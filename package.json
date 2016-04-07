@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "condense-keys": "^1.1.0",
+    "deep-equal": "^1.0.1",
     "magic-virtual-element": "^1.0.6",
     "object-assign": "^4.0.1",
     "swiper": "^3.3.1"

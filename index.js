@@ -1,5 +1,6 @@
 /** @jsx dom */
 import condenseKeys from 'condense-keys';
+import deepEqual from 'deep-equal';
 import dom from 'magic-virtual-element';
 import objectAssign	from 'object-assign';
 import Swiper from 'swiper';
@@ -76,6 +77,7 @@ const getArrows = arrows => arrows && (
 
 const getPagination = pagination => pagination && <div class='swiper-pagination'/>;
 const afterMount = ({props}, el) => requestAnimationFrame(() => init({props}, el));
+const shouldUpdate = ({props}, nextProps) => !deepEqual(props, nextProps);
 
 const render = ({props}) => {
 	const {arrows, children, pagination} = props;
@@ -94,4 +96,4 @@ const render = ({props}) => {
 	);
 };
 
-export default {afterMount, defaultProps, initialState, propTypes, render};
+export default {afterMount, defaultProps, initialState, propTypes, render, shouldUpdate};
