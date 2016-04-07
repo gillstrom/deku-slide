@@ -67,8 +67,6 @@ const init = ({props}, el) => {
 	onInit(swiper);
 };
 
-const afterMount = ({props}, el) => requestAnimationFrame(() => init({props}, el));
-
 const getArrows = arrows => arrows && (
 	<div class='Swiper-controls'>
 		<div class='swiper-button-prev'/>
@@ -77,6 +75,7 @@ const getArrows = arrows => arrows && (
 );
 
 const getPagination = pagination => pagination && <div class='swiper-pagination'/>;
+const afterMount = ({props}, el) => requestAnimationFrame(() => init({props}, el));
 
 const render = ({props}) => {
 	const {arrows, children, pagination} = props;
