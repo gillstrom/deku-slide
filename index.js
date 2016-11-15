@@ -1,8 +1,7 @@
 /** @jsx dom */
 import condenseKeys from 'condense-keys';
-import deepEqual from 'deep-equal';
 import dom from 'magic-virtual-element';
-import objectAssign	from 'object-assign';
+import objectAssign from 'object-assign';
 import Swiper from 'swiper';
 
 const propTypes = {
@@ -49,6 +48,18 @@ const defaultProps = {
 const initialState = () => ({active: 0});
 
 const init = ({props}, el) => {
+	const {children} = props;
+	const oldSwiper = el.querySelector('.swiper-container');
+
+	if (oldSwiper.swiper) {
+		oldSwiper.swiper.destroy(true, true);
+		oldSwiper.swiper = null;
+	}
+
+	if (children.length < 2) {
+		return;
+	}
+
 	const {arrows, duration, loop, onInit, options, pagination, play, speed, vertical} = props;
 	const swiper = new Swiper(el.querySelector('.swiper-container'), condenseKeys(objectAssign({
 		autoplay: play && duration,
@@ -76,8 +87,8 @@ const getArrows = arrows => arrows && (
 );
 
 const getPagination = pagination => pagination && <div class='swiper-pagination'/>;
-const afterMount = ({props}, el) => requestAnimationFrame(() => init({props}, el));
-const shouldUpdate = ({props}, nextProps) => !deepEqual(props, nextProps);
+
+const afterRender = ({props}, el) => requestAnimationFrame(() => init({props}, el));
 
 const render = ({props}) => {
 	const {arrows, children, pagination} = props;
@@ -96,4 +107,4 @@ const render = ({props}) => {
 	);
 };
 
-export default {afterMount, defaultProps, initialState, propTypes, render, shouldUpdate};
+export default {afterRender, defaultProps, initialState, propTypes, render};
