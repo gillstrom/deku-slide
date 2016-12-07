@@ -92,6 +92,7 @@ const getArrows = arrows => arrows && (
 	</div>
 );
 
+const shouldUpdate = ({props}, nextProps) => JSON.stringify(props) !== JSON.stringify(nextProps);
 const afterRender = ({props}, el) => requestAnimationFrame(() => init({props}, el));
 
 const render = ({props}) => {
@@ -111,4 +112,4 @@ const render = ({props}) => {
 	);
 };
 
-export default {afterRender, defaultProps, initialState, propTypes, render};
+export default {afterRender, defaultProps, initialState, propTypes, render, shouldUpdate};
