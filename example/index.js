@@ -3,7 +3,7 @@ import dom from 'magic-virtual-element';
 import {render, tree} from 'deku';
 import Slide from '../';
 
-const options1 = {
+const options = {
 	breakpoints: {
 		320: {
 			slidesPerView: 1,
@@ -15,9 +15,11 @@ const options1 = {
 	spaceBetween: 30
 };
 
+const onInit = x => console.log(x);
+
 const app = tree(
 	<div>
-		<Slide options={options1} onInit={x => console.log(x)} arrows loop pagination>
+		<Slide options={options} onInit={onInit} arrows loop pagination>
 			<div><img src='http://placehold.it/960x500'/></div>
 			<div><img src='http://placehold.it/960x400'/></div>
 			<div><img src='http://placehold.it/960x550'/></div>
