@@ -54,7 +54,7 @@ const initialState = () => {
 const getPagination = pagination => pagination && <div class='swiper-pagination'/>;
 
 const init = ({props}, el) => {
-	const {children} = props;
+	const {children, getSwiperInstance} = props;
 	const container = el.querySelector('.swiper-container');
 
 	if (container.swiper) {
@@ -83,6 +83,10 @@ const init = ({props}, el) => {
 	})));
 
 	onInit(swiper);
+
+	if (getSwiperInstance) {
+		getSwiperInstance(swiper);
+	}
 };
 
 const getArrows = arrows => arrows && (
