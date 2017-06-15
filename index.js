@@ -1,7 +1,6 @@
 /** @jsx dom */
 import condenseKeys from 'condense-keys';
 import dom from 'magic-virtual-element';
-import objectAssign from 'object-assign';
 import Swiper from 'swiper';
 
 const propTypes = {
@@ -45,11 +44,9 @@ const defaultProps = {
 	speed: 300
 };
 
-const initialState = () => {
-	return {
-		active: 0
-	};
-};
+const initialState = () => ({
+	active: 0
+});
 
 const getPagination = pagination => pagination && <div class='swiper-pagination'/>;
 
@@ -67,7 +64,7 @@ const init = ({props}, el) => {
 	}
 
 	const {arrows, duration, loop, onInit, options, pagination, play, speed, vertical} = props;
-	const swiper = new Swiper(container, condenseKeys(objectAssign({
+	const swiper = new Swiper(container, condenseKeys(Object.assign({
 		autoplay: play && duration,
 		autoplayDisableOnInteraction: false,
 		direction: vertical ? 'vertical' : 'horizontal',
@@ -96,7 +93,7 @@ const afterRender = ({props}, el) => requestAnimationFrame(() => init({props}, e
 
 const render = ({props}) => {
 	const {arrows, children, pagination} = props;
-	const items = children.map(x => <div class='swiper-slide'>{x}</div>);
+	const items = children.map((x, i) => <div key={i} class='swiper-slide'>{x}</div>); // eslint-disable-line react/no-array-index-key
 
 	return (
 		<div class={['Swiper', props.class]}>
