@@ -13,6 +13,9 @@ const propTypes = {
 	duration: {
 		type: 'number'
 	},
+	history: {
+		type: 'boolean'
+	},
 	loop: {
 		type: 'boolean'
 	},
@@ -92,8 +95,8 @@ const getArrows = arrows => arrows && (
 const afterRender = ({props}, el) => requestAnimationFrame(() => init({props}, el));
 
 const render = ({props}) => {
-	const {arrows, children, pagination} = props;
-	const items = children.map((x, i) => <div key={i} class='swiper-slide'>{x}</div>); // eslint-disable-line react/no-array-index-key
+	const {arrows, children, history, pagination} = props;
+	const items = children.map((x, i) => <div key={i} class='swiper-slide' {...history ? {'data-history': `slide-${i}`} : {}}>{x}</div>); // eslint-disable-line react/no-array-index-key
 
 	return (
 		<div class={['Swiper', props.class]}>
