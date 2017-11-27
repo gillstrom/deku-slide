@@ -96,7 +96,7 @@ const afterRender = ({props}, el) => requestAnimationFrame(() => init({props}, e
 
 const render = ({props}) => {
 	const {arrows, children, history, pagination} = props;
-	const items = children.map((x, i) => <div key={i} class='swiper-slide' {...history ? {'data-history': `slide-${i}`} : {}}>{x}</div>); // eslint-disable-line react/no-array-index-key
+	const items = children.map((x, i) => <div key={i} class='swiper-slide' {...history ? {'data-history': `slide-${i + 1}`} : {}}>{x}</div>); // eslint-disable-line react/no-array-index-key
 
 	return (
 		<div class={['Swiper', props.class]}>
